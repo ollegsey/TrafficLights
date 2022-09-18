@@ -13,10 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet var yellowSectionView: UIView!
     @IBOutlet var greenSectionView: UIView!
     @IBOutlet var startButtonView: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startButtonView.layer.cornerRadius = 5
+        
         redSectionView.layer.cornerRadius = 70
         yellowSectionView.layer.cornerRadius = 70
         greenSectionView.layer.cornerRadius = 70
@@ -27,9 +29,17 @@ class ViewController: UIViewController {
         
     }
     @IBAction func startButtonDidPress() {
+        startButtonView.setTitle("Next", for: .normal)
         
-        if redSectionView.alpha == 0.2 && yellowSectionView.alpha == 0.2 && greenSectionView.alpha == 0.2 {
+        if redSectionView.alpha != 1 && yellowSectionView.alpha != 1 {
             redSectionView.alpha = 1
+            greenSectionView.alpha = 0.3
+        } else if redSectionView.alpha == 1 {
+            yellowSectionView.alpha = 1
+            redSectionView.alpha = 0.3
+        } else if yellowSectionView.alpha == 1 {
+            yellowSectionView.alpha = 0.3
+            greenSectionView.alpha = 1
         }
     }
     
